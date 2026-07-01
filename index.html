@@ -1,59 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@500;600&family=Shippori+Mincho:wght@500;600&display=swap" rel="stylesheet">
+  <title>Takatora & Nicolette | RSVP</title>
 
-    <title>Wedding RSVP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://script.google.com/macros/s/AKfycbyfUcoXj3iKGJx_7UTD58Zw2FaPIPBlohp5kBEu-LnCrKrYqhlsZFENx7vhYd1UnDEM/exec" rel="stylesheet">
 
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
-
-        body{
-            background:#F8F4EE;
-            font-family:'Cormorant SC', serif;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            min-height:100vh;
-        }
-
-        .container{
-            width:min(420px,90%);
-            text-align:center;
-        }
-
-        h1{
-            font-size:36px;
-            margin-bottom:40px;
-        }
-
-        p{
-            font-family:'Shippori Mincho', serif;
-            margin-bottom:30px;
-        }
-
-    </style>
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div class="container">
 
-<div class="container">
+    <header class="hero">
+      <h1>Takatora & Nicolette</h1>
+      <p class="subtitle">RSVP</p>
 
-<h1>RSVP</h1>
+      <p class="description">
+        ご出欠のご回答をお願いいたします
+        <br><br>
+        Please let us know your attendance.
+        <br><br>
+        2026年8月31日まで
+        <br>
+        By 31 August 2026
+      </p>
+    </header>
 
-<p>Welcome to our wedding.</p>
+    <form id="rsvpForm">
 
-</div>
+      <section class="card">
+        <div class="section-title">
+          <h2>ご列席者様情報</h2>
+          <span>Guest Information</span>
+        </div>
 
+        <div class="field">
+          <label>
+            <span class="jp">お名前 *</span>
+            <span class="en">Name</span>
+          </label>
+          <input type="text" name="Name" placeholder="Takatora Kanaya" required>
+        </div>
+
+        <div class="field">
+          <label>
+            <span class="jp">郵便番号</span>
+            <span class="en">Postal Code</span>
+          </label>
+          <input type="text" name="Postal" placeholder="〒000-0000">
+        </div>
+
+        <div class="field">
+          <label>
+            <span class="jp">ご住所</span>
+            <span class="en">Address</span>
+          </label>
+          <input type="text" name="Address" placeholder="東京都中央区...">
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <h2>ご出欠</h2>
+          <span>Attendance</span>
+        </div>
+
+        <div class="attendance-item">
+          <h3>挙式</h3>
+          <p>Ceremony</p>
+
+          <div class="ema-row">
+            <label class="ema-option">
+              <input id="ceremonyAttend" type="radio" name="Ceremony" value="Attend" required>
+              <img src="images/attend.png" alt="Attend">
+            </label>
+
+            <label class="ema-option">
+              <input id="ceremonyAbsent" type="radio" name="Ceremony" value="Absent">
+              <img src="images/absent.png" alt="Absent">
+            </label>
+          </div>
+        </div>
+
+        <div class="attendance-item">
+          <h3>披露宴</h3>
+          <p>Reception</p>
+
+          <div class="ema-row">
+            <label class="ema-option">
+              <input id="lunchAttend" type="radio" name="Lunch" value="Attend" required>
+              <img src="images/attend.png" alt="Attend">
+            </label>
+
+            <label class="ema-option">
+              <input id="lunchAbsent" type="radio" name="Lunch" value="Absent">
+              <img src="images/absent.png" alt="Absent">
+            </label>
+          </div>
+        </div>
+
+        <div class="attendance-item">
+          <h3>二次会</h3>
+          <p>After Party</p>
+
+          <div class="ema-row">
+            <label class="ema-option">
+              <input type="radio" name="Afterparty" value="Attend" required>
+              <img src="images/attend.png" alt="Attend">
+            </label>
+
+            <label class="ema-option">
+              <input type="radio" name="Afterparty" value="Absent">
+              <img src="images/absent.png" alt="Absent">
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card hidden-section" id="transportSection">
+        <div class="section-title">
+          <h2>送迎・交通</h2>
+          <span>Transportation</span>
+        </div>
+
+        <div class="attendance-item">
+          <h3>行き送迎バス</h3>
+          <p>Morning Shuttle</p>
+
+          <div class="ema-row">
+            <label class="ema-option">
+              <input type="radio" name="Bus_AM" value="Yes">
+              <img src="images/yes.png" alt="Yes">
+            </label>
+
+            <label class="ema-option">
+              <input type="radio" name="Bus_AM" value="No">
+              <img src="images/no.png" alt="No">
+            </label>
+          </div>
+        </div>
+
+        <div class="attendance-item">
+          <h3>帰り送迎バス</h3>
+          <p>Return Shuttle</p>
+
+          <div class="ema-row">
+            <label class="ema-option">
+              <input type="radio" name="Bus_PM" value="Yes">
+              <img src="images/yes.png" alt="Yes">
+            </label>
+
+            <label class="ema-option">
+              <input type="radio" name="Bus_PM" value="No">
+              <img src="images/no.png" alt="No">
+            </label>
+          </div>
+        </div>
+
+        <div class="attendance-item">
+          <h3>駐車場利用</h3>
+          <p>Parking</p>
+
+          <div class="ema-row">
+            <label class="ema-option">
+              <input type="radio" name="Parking" value="Yes">
+              <img src="images/yes.png" alt="Yes">
+            </label>
+
+            <label class="ema-option">
+              <input type="radio" name="Parking" value="No">
+              <img src="images/no.png" alt="No">
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="card hidden-section" id="dietarySection">
+        <div class="section-title">
+          <h2>アレルギー・食事制限</h2>
+          <span>Allergy / Restriction</span>
+        </div>
+
+        <textarea name="Dietary" rows="4" placeholder="e.g. Shellfish allergy"></textarea>
+      </section>
+
+      <section class="card">
+        <div class="section-title">
+          <h2>新郎新婦へのメッセージ</h2>
+          <span>Any words to the couple</span>
+        </div>
+
+        <textarea name="MSG" rows="6" placeholder="Congratulations!"></textarea>
+      </section>
+
+      <button type="submit" class="submit-btn">
+        ご回答を送信
+        <br>
+        <span>Submit RSVP</span>
+      </button>
+
+    </form>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
