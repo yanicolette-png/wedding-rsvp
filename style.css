@@ -640,3 +640,29 @@ textarea::placeholder {
     display: block !important;
   }
 }
+/* FINAL MOBILE GALLERY IMPROVEMENT */
+@media (max-width: 480px) {
+  .photo-triptych {
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    transform: none !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0 !important;
+
+    margin-top: 56px !important;
+    margin-bottom: 72px !important;
+  }
+
+  .photo-triptych img {
+    width: 100% !important;
+    height: 190px !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+    display: block !important;
+  }
+}
