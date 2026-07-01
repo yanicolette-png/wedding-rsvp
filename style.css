@@ -619,3 +619,24 @@ textarea::placeholder {
     max-width: 45%;
   }
 }
+/* FINAL OVERRIDE — mobile image3 gallery */
+@media (max-width: 480px) {
+  .photo-triptych {
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    transform: none !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 4px !important;
+    margin-top: 58px !important;
+    margin-bottom: 58px !important;
+  }
+
+  .photo-triptych img {
+    width: 100% !important;
+    height: 105px !important;
+    aspect-ratio: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+}
