@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  [ceremonyAttend, ceremonyAbsent, lunchAttend, lunchAbsent].forEach((input) => {
+  [ceremonyAttend, ceremonyAbsent, lunchAttend, lunchAbsent].forEach(input => {
     input.addEventListener("change", updateConditionalSections);
   });
 
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     submitBtn.disabled = true;
-    submitBtn.innerHTML = "送信中...<br><span>Sending...</span>";
+    submitBtn.innerHTML = "送信中...<span>Sending...</span>";
 
     try {
       await fetch(SCRIPT_URL, {
@@ -70,31 +70,26 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       form.innerHTML = `
-        <section class="card thank-you">
-          <div class="section-title">
-            <h2>ありがとうございます</h2>
-            <span>Thank you for your RSVP</span>
-          </div>
-
+        <section class="text-section">
+          <h2>ありがとうございます</h2>
+          <span>Thank you for your RSVP</span>
           <p>
             ご回答を受け付けました。<br><br>
-            Your response has been received.
-            <br><br>
+            Your response has been received.<br><br>
             Takatora & Nicolette
           </p>
         </section>
       `;
 
       window.scrollTo({
-        top: 0,
+        top: document.body.scrollHeight,
         behavior: "smooth"
       });
 
     } catch (error) {
       alert("送信できませんでした。もう一度お試しください。");
-
       submitBtn.disabled = false;
-      submitBtn.innerHTML = "ご回答を送信<br><span>Submit RSVP</span>";
+      submitBtn.innerHTML = "ご回答を送信<span>Submit RSVP</span>";
     }
   });
 });
