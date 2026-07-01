@@ -633,8 +633,8 @@ textarea::placeholder {
   }
 
   .photo-triptych img {
-    width: 100% !important;
-    height: 105px !important;
+    width: 80% !important;
+    height: 120px !important;
     aspect-ratio: auto !important;
     object-fit: cover !important;
     display: block !important;
