@@ -93,3 +93,72 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/* ===========================
+   Scroll Animations
+=========================== */
+
+const observer = new IntersectionObserver((entries)=>{
+
+    entries.forEach((entry)=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+        }
+
+    });
+
+},{
+    threshold:.18
+});
+
+document.querySelectorAll(
+`
+.text-section,
+.photo,
+.gallery-three,
+.timeline-item,
+.form-block
+`
+).forEach((el)=>{
+
+    el.classList.add("fade-section");
+
+    observer.observe(el);
+
+});
+
+/* Timeline delay */
+
+document.querySelectorAll(".timeline-item").forEach((item,index)=>{
+
+    item.style.transitionDelay=(index*0.12)+"s";
+
+});
+
+/* ===========================
+   Scroll Animations
+=========================== */
+
+const animationObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, {
+  threshold: 0.18
+});
+
+document.querySelectorAll(
+  ".text-section, .photo, .gallery-three, .timeline-item, .form-block"
+).forEach((el) => {
+  el.classList.add("fade-section");
+  animationObserver.observe(el);
+});
+
+document.querySelectorAll(".timeline-item").forEach((item, index) => {
+  item.style.transitionDelay = `${index * 0.12}s`;
+});

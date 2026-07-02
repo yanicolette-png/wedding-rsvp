@@ -48,11 +48,22 @@ body {
   margin-top: 32px;
 }
 
+/* Hero moss + stone lantern divider */
 .line {
-  width: 90px;
-  height: 1px;
-  background: #c7a98b;
-  margin: 28px auto 0;
+  display: block;
+  flex-shrink: 0;
+
+  width: min(420px, 82vw);
+  height: 70px;
+  margin: 22px auto 0;
+
+  background-image: url("https://yanicolette-png.github.io/wedding-rsvp/divider.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  opacity: 1;
+  pointer-events: none;
 }
 
 .photo {
@@ -126,12 +137,18 @@ body {
 
 .text-section::before,
 .form-block::before {
-  content: "──────── ✿ ────────";
+  content: "";
   display: block;
-  color: #c7a98b;
-  font-size: 13px;
-  margin-bottom: 34px;
-  letter-spacing: 0.08em;
+  width: 170px;
+  height: 18px;
+  margin: 0 auto 34px;
+  background:
+    radial-gradient(circle, rgba(89, 118, 72, 0.75) 0 2px, transparent 3px),
+    linear-gradient(90deg, transparent, #c7a98b 22%, transparent 22% 38%, #8a6a4a 38% 40%, transparent 40% 60%, #8a6a4a 60% 62%, transparent 62% 78%, #c7a98b 78%, transparent);
+  background-size: 14px 14px, 100% 1px;
+  background-repeat: repeat-x, no-repeat;
+  background-position: center top, center 9px;
+  opacity: 0.8;
 }
 
 .section-title {
@@ -395,8 +412,9 @@ textarea::placeholder {
 }
 
 .ema-option input:checked + img {
-  transform: translateY(-6px) scale(1.06);
-  filter: drop-shadow(0 12px 18px rgba(138, 106, 74, 0.35));
+  transform: translateY(-6px) scale(1.08);
+  filter: drop-shadow(0 12px 20px rgba(138, 106, 74, 0.35));
+   animation-duration:3.5s;
 }
 
 .ema-row:has(input:checked) .ema-option img {
@@ -537,5 +555,445 @@ textarea::placeholder {
   .ema-option {
     width: 130px;
     max-width: 45%;
+  }
+}
+/* ===========================
+   Fade In Animation
+=========================== */
+
+.fade-section{
+    opacity:0;
+    transform:translateY(50px);
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+}
+
+.fade-section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+.photo img,
+.gallery-three img{
+
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+
+    transform:scale(1);
+
+    transition:transform 12s ease;
+
+}
+
+.photo:hover img,
+.gallery-three div:hover img{
+
+    transform:scale(1.05);
+
+}
+
+
+
+/* ===========================
+   Ema Floating Animation
+   + ema.png Selected Effect
+=========================== */
+
+@keyframes emaSwing {
+  0%,
+  55%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  60% {
+    transform: rotate(4deg);
+  }
+
+  68% {
+    transform: rotate(-4deg);
+  }
+
+  76% {
+    transform: rotate(3deg);
+  }
+
+  84% {
+    transform: rotate(-2deg);
+  }
+
+  92% {
+    transform: rotate(1deg);
+  }
+}
+
+/* Animate the complete label so the Ema and overlay move together */
+.ema-option {
+  position: relative;
+  overflow: visible;
+
+  transform-origin: top center;
+  animation: emaSwing 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Original Ema image */
+.ema-option img {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  display: block;
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* New realistic checked overlay */
+/* ===================================
+   Small ema.png decorations when checked
+=================================== */
+
+/* ===================================
+   Bottom stone decorations when checked
+=================================== */
+
+.ema-option {
+  position: relative;
+  overflow: visible;
+}
+
+/* Hidden stone decorations */
+.ema-option::before,
+.ema-option::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+
+  width: 80px;
+  height: 60px;
+
+  background-image:
+    url("https://yanicolette-png.github.io/wedding-rsvp/images/ema.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 3;
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease;
+}
+
+/* Bottom-left stone */
+.ema-option::before {
+  left: 3px;
+  transform: translateY(-4px) rotate(5deg) scale(0.8);
+}
+
+/* Bottom-right stone */
+.ema-option::after {
+  right: 3px;
+  transform: translateY(-4px) rotate(-5deg) scale(0.8);
+}
+
+/* Show bottom-left stone when checked */
+.ema-option:has(input:checked)::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) rotate(5deg) scale(1);
+}
+
+/* Show bottom-right stone when checked */
+.ema-option:has(input:checked)::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) rotate(-5deg) scale(1);
+}
+
+/* Selected Ema */
+.ema-option input:checked + img {
+  transform: translateY(-6px) scale(1.06);
+  filter: drop-shadow(
+    0 12px 20px rgba(88, 76, 54, 0.3)
+  );
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .ema-option::before,
+  .ema-option::after {
+    bottom: -3px;
+    width: 30px;
+    height: 22px;
+  }
+
+  .ema-option::before {
+    left: 2px;
+  }
+
+  .ema-option::after {
+    right: 2px;
+  }
+}
+
+/* Selected wooden Ema */
+.ema-option input:checked + img {
+  transform: translateY(-6px) scale(1.06);
+
+  filter:
+    drop-shadow(0 12px 20px rgba(88, 76, 54, 0.3));
+}
+
+/* Dim the unselected option */
+.ema-row:has(input:checked) .ema-option img {
+  opacity: 0.5;
+}
+
+/* Keep selected option fully visible */
+.ema-row:has(input:checked)
+.ema-option input:checked + img {
+  opacity: 1;
+}
+
+/* Selected option swings slightly more often */
+.ema-option:has(input:checked) {
+  animation-duration: 3.8s;
+}
+
+/* Different natural timing */
+.attendance-item:nth-child(1)
+.ema-option:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.attendance-item:nth-child(1)
+.ema-option:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.attendance-item:nth-child(2)
+.ema-option:nth-child(1) {
+  animation-delay: 1.6s;
+}
+
+.attendance-item:nth-child(2)
+.ema-option:nth-child(2) {
+  animation-delay: 2.4s;
+}
+
+.attendance-item:nth-child(3)
+.ema-option:nth-child(1) {
+  animation-delay: 3.2s;
+}
+
+.attendance-item:nth-child(3)
+.ema-option:nth-child(2) {
+  animation-delay: 4s;
+}
+
+/* ========================
+   Timeline Animation
+======================== */
+
+.timeline-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ========================
+   Paper Background + Moss Border + Lantern Divider
+======================== */
+/* ========================
+   Paper Background + mossborder.png
+======================== */
+
+:root {
+  --moss-border-image:
+    url("https://yanicolette-png.github.io/wedding-rsvp/images/mossborder.png?v=1");
+
+  --paper-base: #f8f4ee;
+}
+
+/* Main paper background */
+html {
+  background-color: var(--paper-base);
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 18% 12%,
+      rgba(255, 255, 255, 0.48),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 82% 28%,
+      rgba(214, 199, 178, 0.18),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #faf7f0 0%,
+      #f6f0e7 48%,
+      #f3ebe1 100%
+    ) !important;
+}
+
+/* Subtle moss texture over the paper */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  background-image: var(--moss-border-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  opacity: 0.075;
+  mix-blend-mode: multiply;
+
+  filter:
+    saturate(0.72)
+    brightness(1.08)
+    contrast(0.92);
+
+  animation: mossBackgroundBreath 34s ease-in-out infinite;
+}
+
+/* Real moss border above the paper */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 0;
+
+  background-image: var(--moss-border-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+
+  opacity: 0.58;
+
+  filter:
+    saturate(0.78)
+    brightness(1.03)
+    contrast(0.92);
+}
+
+/* Gentle background movement */
+@keyframes mossBackgroundBreath {
+  0%,
+  100% {
+    opacity: 0.065;
+    filter:
+      saturate(0.70)
+      brightness(1.08)
+      contrast(0.92);
+  }
+
+  50% {
+    opacity: 0.095;
+    filter:
+      saturate(0.78)
+      brightness(1.04)
+      contrast(0.96);
+  }
+}
+
+/* Keep website content above the moss layers */
+header,
+main,
+.hero,
+.text-section,
+.photo,
+.gallery-three,
+.form-section,
+.form-block {
+  position: relative;
+  z-index: 1;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  body::before {
+    background-size: auto 100%;
+    opacity: 0.055;
+  }
+
+  body::after {
+    background-size: 100% 100%;
+    opacity: 0.48;
+  }
+}
+
+
+/* ==========================================
+   Custom Divider (divider.png)
+========================================== */
+
+/* Custom Divider */
+.text-section::before,
+.form-block::before {
+  content: "";
+  display: block;
+
+  width: min(360px, 76vw);
+  height: 48px;
+  margin: 0 auto 38px;
+
+  background-image: url("https://yanicolette-png.github.io/wedding-rsvp/images/divider.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  opacity: 1;
+  filter: none;
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .line {
+    width: min(330px, 88vw);
+    height: 56px;
+    margin-top: 18px;
+  }
+}
+
+/* Center text fields away from moss border */
+.form-block .field {
+  width: min(440px, calc(100% - 200px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .form-block .field {
+    width: calc(100% - 100px);
   }
 }
