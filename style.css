@@ -734,7 +734,7 @@ textarea::placeholder {
   .ema-option::after {
     bottom: -5px;
 
-    width: 55%;
+    width: 80%;
     max-width: 80px;
     min-width: 68px;
 
