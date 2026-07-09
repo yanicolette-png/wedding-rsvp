@@ -802,9 +802,6 @@ textarea::placeholder {
 /* ========================
    Paper Background + Moss Border + Lantern Divider
 ======================== */
-/* ========================
-   Paper Background + mossborder.png
-======================== */
 
 :root {
   --moss-border-image:
